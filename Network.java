@@ -4,11 +4,13 @@ import java.util.concurrent.ThreadLocalRandom;
 class Network {
 
 	double outputBias = 0; 
+	double previousOutputBias = 0;
 	double outputSigmoid = 0; 
 	double outputDelta = 0;  
 	ArrayList<Perceptron> perceptronArray = new ArrayList<Perceptron>();
 	// double correct = 1;
 	double p = 0.5;
+	double a = 0.9;
 
 	double randomiser(double numInputs) {
 		return ThreadLocalRandom.current().nextDouble((-2/numInputs), (2/numInputs));
@@ -18,6 +20,7 @@ class Network {
 		for(int i = 0; i<numToCreate; i++) {
 			Perceptron perceptron = new Perceptron();
 			perceptron.bias = randomiser(numInputs);
+			System.out.println("inital bias: "+perceptron.bias);
 			perceptron.createLinks(numInputs);
 
 			perceptronArray.add(perceptron);
@@ -62,7 +65,9 @@ class Network {
 			perceptron.delta(outputDelta);
 		}
 
+		previousOutputBias = outputBias;
 		outputBias = outputBias + (p * outputDelta);
+		outputBias += a*(outputBias - previousOutputBias);
 		//System.out.println("output bias: " + outputBias);
 
 		for(Perceptron perceptron: perceptronArray) {

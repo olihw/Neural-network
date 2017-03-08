@@ -2,6 +2,7 @@ class Link {
 
 	int input = -1;     
 	double weight = 0;
+	double previousWeight = 0;
 	
 	void setLink(int newInput, double newWeight) {
 		input = newInput;
