@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 class Input  {
 	
-	public int inputNumber = 2;
+	public int inputNumber = 8;
     ArrayList<Double[]> csv = new ArrayList<Double[]>();
         
     boolean checkInput(String input) {
@@ -18,7 +18,7 @@ class Input  {
     }
 
     void getData() throws FileNotFoundException, IOException {
-    	String csvFile = "test.csv";
+    	String csvFile = "CWDataStudent.csv";
         BufferedReader br = null;
         String line = "";
         br = new BufferedReader(new FileReader(csvFile));
@@ -103,4 +103,16 @@ class Input  {
     Double[] currentRound(int round) {
     	return csv.get(round);
     }
+
+    // void outputToCSV(double output, double predictand) throws FileNotFoundException, IOException {
+    //     String csvFile = "testoutput.csv";
+    //     FileWriter writer = new FileWriter(csvFile);
+    //     writer.append(String.valueOf(output));
+    //     writer.append(",");
+    //     writer.append(String.valueOf(predictand));
+    //     writer.append("\n");
+    //     writer.flush();
+    //     writer.close();
+
+    // }
 }
