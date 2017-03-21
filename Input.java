@@ -18,7 +18,7 @@ class Input  {
     }
 
     void getData() throws FileNotFoundException, IOException {
-    	String csvFile = "CWDataStudent.csv";
+    	String csvFile = "test.csv";
         BufferedReader br = null;
         String line = "";
         br = new BufferedReader(new FileReader(csvFile));
