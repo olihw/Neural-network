@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 class Input  {
 	
-	public int inputNumber = 8;
+	public int inputNumber = 2;
     ArrayList<Double[]> csv = new ArrayList<Double[]>();
         
     boolean checkInput(String input) {
@@ -18,7 +18,7 @@ class Input  {
     }
 
     void getData() throws FileNotFoundException, IOException {
-    	String csvFile = "CWDataStudent.csv";
+    	String csvFile = "test.csv";
         BufferedReader br = null;
         String line = "";
         br = new BufferedReader(new FileReader(csvFile));
