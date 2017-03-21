@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 class Input  {
 	
-	public int inputNumber = 8;
+	public int inputNumber = 2;
     ArrayList<Double[]> csv = new ArrayList<Double[]>();
         
     boolean checkInput(String input) {

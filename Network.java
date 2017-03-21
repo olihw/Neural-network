@@ -20,7 +20,7 @@ class Network {
 		for(int i = 0; i<numToCreate; i++) {
 			Perceptron perceptron = new Perceptron();
 			perceptron.bias = randomiser(numInputs);
-			System.out.println("inital bias: "+perceptron.bias);
+			//System.out.println("inital bias: "+perceptron.bias);
 			perceptron.createLinks(numInputs);
 
 			perceptronArray.add(perceptron);
