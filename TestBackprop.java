@@ -25,7 +25,7 @@ public class TestBackprop {
         //test.printPerceptrons();
         double trainingError = 0;
         System.out.println(Math.round(input.csv.size()*0.6));
-        while(counter < 3000) {
+        while(counter < 100) {
             for(int i =0; i<Math.round(input.csv.size()*0.6); i++) { //0.6
                 test.forwardPass(input.currentRound(i));
                 // if(counter == 2999) {
