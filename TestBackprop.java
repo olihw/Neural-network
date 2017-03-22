@@ -56,10 +56,11 @@ public class TestBackprop {
             } else {
                 validationCounter = 0;
             }
-            if(validationCounter > 200) {
+            if(validationCounter > 50) {
                 System.out.println(counter+ "////////////////////////////////////");
                  System.out.println(validationError + ", " + trainingError);
-                break;
+                test.p = test.p * 0.5;
+                validationCounter = 0;
             }
         }
 
