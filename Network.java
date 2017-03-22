@@ -9,7 +9,7 @@ class Network {
 	double outputDelta = 0;  
 	ArrayList<Perceptron> perceptronArray = new ArrayList<Perceptron>();
 	// double correct = 1;
-	double p = 0.5;
+	double p = 0.3;
 	double a = 0.9;
 
 	double randomiser(double numInputs) {
