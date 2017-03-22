@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 class Input  {
 	
-	public int inputNumber = 2;
+	public int inputNumber = 8;
     ArrayList<Double[]> csv = new ArrayList<Double[]>();
         
     boolean checkInput(String input) {
@@ -18,7 +18,7 @@ class Input  {
     }
 
     void getData() throws FileNotFoundException, IOException {
-    	String csvFile = "test.csv";
+    	String csvFile = "CWDataStudent.csv";
         BufferedReader br = null;
         String line = "";
         br = new BufferedReader(new FileReader(csvFile));
@@ -93,6 +93,7 @@ class Input  {
     	minMax[0] = min;
     	minMax[1] = max;
 
+    	System.out.println("min: " + minMax[0] + " Max: " + minMax[1]);
     	return minMax;
     }
 
