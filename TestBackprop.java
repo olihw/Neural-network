@@ -7,9 +7,11 @@ public class TestBackprop {
         Network test = new Network();
         Input input = new Input();
 
-        input.getData();
+         input.getData();
+         System.out.println(input.min);
+         System.out.println(input.max);
 
-        // System.out.println(test.randomiser(8));
+        // // System.out.println(test.randomiser(8));
 
         int numOfPerceptrons = 5;
         int numOfInputs = 8;
@@ -23,7 +25,7 @@ public class TestBackprop {
         //test.printPerceptrons();
         double trainingError = 0;
         System.out.println(Math.round(input.csv.size()*0.6));
-        while(counter < 2000) {
+        while(counter < 3000) {
             for(int i =0; i<Math.round(input.csv.size()*0.6); i++) { //0.6
                 test.forwardPass(input.currentRound(i));
                 // if(counter == 2999) {
@@ -39,9 +41,9 @@ public class TestBackprop {
         double testError = 0;
         for(int i = (int)Math.round(input.csv.size()*0.6); i<input.csv.size(); i++) {
             test.forwardPass(input.currentRound(i));
-            writer.append(String.valueOf(test.outputSigmoid));
+            writer.append(String.valueOf(input.destandardiseFunction(test.outputSigmoid)));
             writer.append(",");
-            writer.append(String.valueOf(input.currentRound(i)[8]));
+            writer.append(String.valueOf(input.destandardiseFunction(input.currentRound(i)[8])));
             writer.append("\n");
             testError += Math.abs(input.currentRound(i)[8] - test.outputSigmoid);
         }

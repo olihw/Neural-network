@@ -4,6 +4,8 @@ class Input  {
 	
 	public int inputNumber = 8;
     ArrayList<Double[]> csv = new ArrayList<Double[]>();
+    double min = 0;
+    double max = 0;
         
     boolean checkInput(String input) {
         try {  
@@ -60,6 +62,10 @@ class Input  {
     void standardiseData() {
     	for(int numberOfInputs = 0; numberOfInputs<csv.get(0).length; numberOfInputs++) {
 	    	double[] minMax = findMinMax(numberOfInputs);
+	    	if(numberOfInputs == csv.get(0).length-1) {
+	    		min = minMax[0];
+	    		max = minMax[1];
+	    	}
 	    	for(int i=0; i<csv.size(); i++) {
 	    		// System.out.println(csv.get(i)[column]);
 	    		csv.get(i)[numberOfInputs] = standardiseFunction(csv.get(i)[numberOfInputs], minMax[0], minMax[1]);
@@ -116,4 +122,9 @@ class Input  {
     //     writer.close();
 
     // }
+
+    double destandardiseFunction(double standValue) {
+    	return (((standValue - 0.1)/0.8)*(max-min))+min;
+    }
+
 }
