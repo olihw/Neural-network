@@ -4,6 +4,9 @@ class Input  {
 	
 	public int inputNumber = 8;
     ArrayList<Double[]> csv = new ArrayList<Double[]>();
+    ArrayList<Double[]> trainingData = new ArrayList<Double[]>();
+    ArrayList<Double[]> validationData = new ArrayList<Double[]>();
+    ArrayList<Double[]> testData = new ArrayList<Double[]>();
     double min = 0;
     double max = 0;
         
@@ -55,6 +58,7 @@ class Input  {
         }
 
         standardiseData();
+        splitDataSets();
 
         // System.out.println(csv.get(1)[8]);
     }
@@ -99,7 +103,7 @@ class Input  {
     	minMax[0] = min;
     	minMax[1] = max;
 
-    	System.out.println("min: " + minMax[0] + " Max: " + minMax[1]);
+    	//System.out.println("min: " + minMax[0] + " Max: " + minMax[1]);
     	return minMax;
     }
 
@@ -125,6 +129,20 @@ class Input  {
 
     double destandardiseFunction(double standValue) {
     	return (((standValue - 0.1)/0.8)*(max-min))+min;
+    }
+
+    void splitDataSets() {
+    	int counter = 0;
+    	while(counter < csv.size()) {
+    		if(counter < Math.round(csv.size()*0.6)) {
+    			trainingData.add(csv.get(counter));
+    		} else if (counter < Math.round(csv.size()*0.8)) {
+    			validationData.add(csv.get(counter));
+    		} else {
+    			testData.add(csv.get(counter));	
+    		}
+    		counter++;
+    	}
     }
 
 }
