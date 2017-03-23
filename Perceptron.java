@@ -48,21 +48,17 @@ class Perceptron {
 	}
 
 	void updateOutputLinkWeight(double p, double outputDelta) {
-		outputLink.weight += (p * outputDelta * sigmoid); //changed to outputDelta instead of delta
-		//System.out.println("output link: " + outputLink.weight);
+		outputLink.weight += (p * outputDelta * sigmoid);
 	}
 
 	void updateWeights(double p, Double[] inputs) {
 		for(Link link: linkArray) {
 			link.weight += (p*delta*inputs[link.input]);
-			//System.out.println("link: " + link.input + " weight: "+ link.weight + " input: " + inputs[link.input]);
 		}
 	}
 
 	void updateBias(double p) {
-		bias += (p*delta*1);
-		//System.out.println("perceptron bias: " + bias);
-
+		bias += (p*delta*1);	
 	}
 
 	void updateAllWeights(double p, Double[] inputs, double outputDelta) {

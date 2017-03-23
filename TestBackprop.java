@@ -27,7 +27,8 @@ public class TestBackprop {
         double validationError = 0;
         double previousValidationError = 0;
         int validationCounter = 0;
-        while(counter < 5000) {
+        int epochs = 5000;
+        while(counter < epochs) {
             for(int i =0; i<input.trainingData.size(); i++) {
                 if(i == 0) {
                     trainingError = 0;
@@ -51,14 +52,29 @@ public class TestBackprop {
             previousValidationError = validationError;
             validationError = Math.sqrt(validationErrorSum/input.validationData.size());   
             System.out.println(validationError + ", " + previousValidationError);
+
+            // if (counter == epochs*0.5) {
+            //     test.p = test.p * 0.5;
+            // }
+            // if (counter == epochs*0.6) {
+            //     test.p = test.p * 0.5;
+            // }
+            // if (counter == epochs*0.7) {
+            //     test.p = test.p * 0.5;
+            // }
+            // if (counter == epochs*0.8) {
+            //     test.p = test.p * 0.5;
+            // }
+
+
             if(validationError > previousValidationError && counter != 1) {
                 validationCounter++;
             } else {
                 validationCounter = 0;
             }
-            if(validationCounter > 100) {
+            if(validationCounter > 500) {
                 System.out.println(counter+ "////////////////////////////////////");
-                 System.out.println(validationError + ", " + trainingError);
+                System.out.println(validationError + ", " + trainingError);
                 break;
             }
         }
@@ -78,6 +94,20 @@ public class TestBackprop {
         writer.close();
         testError = Math.sqrt(testError/input.testData.size());
         System.out.println(testError);
+
+        String csvFile2 = "newtestoutputtr.csv";
+        FileWriter writer2 = new FileWriter(csvFile2);
+        for(int i = 0; i<input.trainingData.size(); i++) {
+            test.forwardPass(input.trainingData.get(i));
+            writer2.append(String.valueOf(input.destandardiseFunction(test.outputSigmoid)));
+            writer2.append(",");
+            writer2.append(String.valueOf(input.destandardiseFunction(input.trainingData.get(i)[8])));
+            writer2.append("\n");
+            testError += Math.abs(input.trainingData.get(i)[8] - test.outputSigmoid);
+        }
+        //test.printPerceptrons();
+        writer2.flush();
+        writer2.close();
 
     }
 
