@@ -27,31 +27,24 @@ class Input  {
         BufferedReader br = null;
         String line = "";
         br = new BufferedReader(new FileReader(csvFile));
-        // int counter = 0;
 
         while ((line = br.readLine()) != null) {
             boolean valid = true;
             String[] input = line.split(",");
             Double[] checkedInput = new Double[inputNumber+1];
-            // counter++;
-            for(int i=0; i<inputNumber+1;i++) { //input change
+            for(int i=0; i<inputNumber+1;i++) {
                 if(valid == true) {
                     if(input[i] != null && checkInput(input[i])) {
                         if(Double.parseDouble(input[i]) >= 0) {
                             checkedInput[i] = Double.parseDouble(input[i]);
                         } else {
                             valid = false;
-                            // System.out.println(input[i]);
-                            // System.out.println(counter + " i:"+ i + " Line: " + line);
                         } 
                     } else {
                         valid = false;
-                        // System.out.println(input[i]);
-                        // System.out.println(counter + " Line: ");
                     }
                 }
             }
-
             if(valid == true) {
                 csv.add(checkedInput);
             }
@@ -59,8 +52,6 @@ class Input  {
 
         standardiseData();
         splitDataSets();
-
-        // System.out.println(csv.get(1)[8]);
     }
 
     void standardiseData() {
@@ -71,10 +62,7 @@ class Input  {
 	    		max = minMax[1];
 	    	}
 	    	for(int i=0; i<csv.size(); i++) {
-	    		// System.out.println(csv.get(i)[column]);
 	    		csv.get(i)[numberOfInputs] = standardiseFunction(csv.get(i)[numberOfInputs], minMax[0], minMax[1]);
-	    		// System.out.println(csv.get(i)[column]);
-	    		// System.out.println("");
 	    	}
     	}
     }
@@ -103,7 +91,6 @@ class Input  {
     	minMax[0] = min;
     	minMax[1] = max;
 
-    	//System.out.println("min: " + minMax[0] + " Max: " + minMax[1]);
     	return minMax;
     }
 
@@ -114,18 +101,6 @@ class Input  {
     Double[] currentRound(int round) {
     	return csv.get(round);
     }
-
-    // void outputToCSV(double output, double predictand) throws FileNotFoundException, IOException {
-    //     String csvFile = "testoutput.csv";
-    //     FileWriter writer = new FileWriter(csvFile);
-    //     writer.append(String.valueOf(output));
-    //     writer.append(",");
-    //     writer.append(String.valueOf(predictand));
-    //     writer.append("\n");
-    //     writer.flush();
-    //     writer.close();
-
-    // }
 
     double destandardiseFunction(double standValue) {
     	return (((standValue - 0.1)/0.8)*(max-min))+min;

@@ -1,7 +1,7 @@
 import java.lang.Math;
 import java.util.*;
 import java.io.*;
-public class TestBackprop {
+public class NeuralNetwork {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         Network test = new Network();

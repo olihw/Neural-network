@@ -29,10 +29,9 @@ class Perceptron {
 			total += (linkArray.get(i).weight*inputs[i]);
 		}
 		
-		total += bias; // possible error if problems with results then check
+		total += bias;
 
 		sigmoid = sigmoidFunction(total);
-		//System.out.println("Sigmoid: " + sigmoid);
 	}
 
 	double sigmoidFunction(double total) {
@@ -45,14 +44,12 @@ class Perceptron {
 
 	void delta(double deltaOutput) {
 		delta = (outputLink.weight * deltaOutput) * sigmoidDifferential();
-		//System.out.println("Delta: " +delta);
 	}
 
 	void updateOutputLinkWeight(double p, double outputDelta) {
 		outputLink.previousWeight = outputLink.weight;
-		outputLink.weight += (p * outputDelta * sigmoid); //changed to outputDelta instead of delta
+		outputLink.weight += (p * outputDelta * sigmoid);
 		outputLink.weight += a*(outputLink.weight - outputLink.previousWeight);
-		//System.out.println("output link: " + outputLink.weight);
 	}
 
 	void updateWeights(double p, Double[] inputs) {
@@ -60,15 +57,13 @@ class Perceptron {
 			link.previousWeight = link.weight;
 			link.weight += (p*delta*inputs[link.input]);
 			link.weight += a*(link.weight - link.previousWeight);
-			//System.out.println("link: " + link.input + " weight: "+ link.weight + " input: " + inputs[link.input]);
 		}
 	}
 
-	void updateBias(double p) { //momentum added
+	void updateBias(double p) {
 		previousBias = bias;
 		bias += (p*delta*1);
 		bias += a*(bias-previousBias);
-		//System.out.println("perceptron bias: " + bias);
 
 	}
 
