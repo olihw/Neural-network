@@ -51,16 +51,18 @@ public class TestBackprop {
             previousValidationError = validationError;
             validationError = Math.sqrt(validationErrorSum/input.validationData.size());   
             System.out.println(validationError + ", " + previousValidationError);
+
             if(validationError > previousValidationError && counter != 1) {
                 validationCounter++;
             } else {
                 validationCounter = 0;
             }
-            if(validationCounter > 50) {
-                System.out.println(counter+ "////////////////////////////////////");
-                 System.out.println(validationError + ", " + trainingError);
-                test.p = test.p * 0.5;
-                validationCounter = 0;
+            if(validationCounter > 100) {
+                System.out. println(counter+ "////////////////////////////////////");
+                System.out.println(validationError + ", " + trainingError);
+                break;
+                // test.p = test.p * 0.5;
+                // validationCounter = 0;
             }
         }
 
